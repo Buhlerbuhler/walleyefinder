@@ -12,11 +12,23 @@ const LON = -95.03;
 
 async function fetchWaterTemp() {
   try {
-    const resp = await fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}&daily=water_temperature_max&timezone=auto`);
+    // Use a free CORS proxy to bypass browser restrictions
+    const proxy = "https://corsproxy.io/?";
+    const geoMetURL = "https://geo.weather.gc.ca/geomet?service=WFS&version=2.0.0&request=GetFeature&typeNames=MSC_BUOY_OBSERVATIONS&outputFormat=json";
+
+    const resp = await fetch(proxy + geoMetURL);
     const data = await resp.json();
-    const temp = data.daily.water_temperature_max[0]; // Get today's water temp
-    return temp ?? null;
-  } catch {
+
+    // Find the Lake Winnipeg South Basin buoy (station 45140)
+    const buoy = data.features.find(f => f.properties.station_id === "45140");
+
+    if (buoy && buoy.properties.water_temperature !== null) {
+      return buoy.properties.water_temperature;
+    } else {
+      return null; // No water temp available
+    }
+  } catch (error) {
+    console.error("Error fetching water temp:", error);
     return null;
   }
 }
@@ -91,4 +103,5 @@ goButton.addEventListener('click', async () => {
   resultBlock.classList.remove('hidden');
 });
 
+// Try to auto-fill temp on page load
 autoFillTemp();
