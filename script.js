@@ -6,15 +6,16 @@ const depthOutput = document.getElementById('depth');
 const lureOutput = document.getElementById('lure');
 const whyOutput = document.getElementById('why');
 
+// Winnipeg River upstream from Pointe du Bois
 const LAT = 50.05;
 const LON = -95.03;
 
 async function fetchWaterTemp() {
   try {
-    const resp = await fetch("https://geo.weather.gc.ca/geomet?service=WFS&version=2.0.0&request=GetFeature&typeNames=MSC_BUOY_OBSERVATIONS&outputFormat=json");
+    const resp = await fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}&daily=water_temperature_max&timezone=auto`);
     const data = await resp.json();
-    const buoy = data.features.find(f => f.properties.station_id === "45140");
-    return buoy?.properties.water_temperature ?? null;
+    const temp = data.daily.water_temperature_max[0]; // Get today's water temp
+    return temp ?? null;
   } catch {
     return null;
   }
