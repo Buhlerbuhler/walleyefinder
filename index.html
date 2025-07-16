@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walleye Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>WALLEYE PLANNER</h1>
+
+        <div id="input-area">
+            <label for="temp">WATER TEMP (°C)</label>
+            <input type="number" id="temp" placeholder="Auto loading…" />
+            <button id="go">GET RECOMMENDATION</button>
+            <p id="temp-status" class="info"></p>
+        </div>
+
+        <div id="result-area" class="hidden">
+            <p class="depth" id="depth"></p>
+            <p class="lure" id="lure"></p>
+            <p class="info" id="why"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
