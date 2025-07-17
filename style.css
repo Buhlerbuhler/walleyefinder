@@ -18,18 +18,18 @@ body {
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 900;
+  font-size: 2rem;
+  font-weight: 800;
   margin-bottom: 2rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #fff;
+  color: #f1c40f; /* optional accent color */
 }
 
 /* Input Area */
 #input-area label {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   color: #f1c40f;
@@ -41,9 +41,9 @@ h1 {
   width: 80%; /* narrower width */
   margin: 0 auto 1rem auto;
   box-sizing: border-box;
-  font-size: 1.4rem;
-  padding: 0.8rem;
-  border-radius: 8px;
+  font-size: 1.1rem;
+  padding: 0.6rem;
+  border-radius: 5px;
 }
 
 #temp {
@@ -56,11 +56,11 @@ h1 {
 #go {
   background: #f1c40f;
   color: #111;
-  font-weight: bold;
-  font-size: 1.2rem; /* slightly smaller text */
+  font-weight: 600;
+  font-size: 1rem;
   padding: 0.6rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -79,18 +79,22 @@ h1 {
 /* Result Area */
 #result-area {
   margin-top: 2rem;
+  text-align: left;
+  background: #222;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
-.depth {
-  font-size: 2.2rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
+#result-area p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
   color: #fff;
 }
 
-.lure {
-  font-size: 1.6rem;
-  color: #f1c40f;
+#result-area p strong {
+  font-weight: 600;
+  color: #f1c40f; /* optional subtle accent for important values */
 }
 
 .hidden {
